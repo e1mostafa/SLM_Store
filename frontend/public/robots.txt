@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /seller/
+Disallow: /account/
+Disallow: /checkout/
+Disallow: /cart/
+Disallow: /auth/
+
+Sitemap: https://slmstore.com/sitemap.xml

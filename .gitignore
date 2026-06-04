@@ -1,0 +1,74 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+!.env.example
+!frontend/.env.example
+!backend/.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Prisma
+backend/prisma/*.db
+backend/prisma/*.db-journal
+
+# TypeScript
+*.tsbuildinfo
+
+# Testing
+coverage/
+.nyc_output
+
+# Docker volumes (don't commit data)
+docker/postgres/data/
+
+# SSL certificates
+docker/nginx/ssl/*.pem
+docker/nginx/ssl/*.key
+docker/nginx/ssl/*.crt
+
+# Uploads (user content)
+backend/uploads/
+
+# PM2
+.pm2/
+
+# Next.js
+frontend/.next/
+frontend/out/
+
+# Vercel
+.vercel
