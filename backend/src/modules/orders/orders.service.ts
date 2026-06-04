@@ -80,7 +80,7 @@ export class OrdersService {
     const orderNumber = `AMZ-${Date.now()}-${Math.random().toString(36).substr(2, 5).toUpperCase()}`;
 
     // FIX: Transaction callback typed as (tx: typeof prisma) instead of any
-    const order = await prisma.$transaction(async (tx: typeof prisma) => {
+    const order = await prisma.$transaction(async (tx: any) => {
       const newOrder = await tx.order.create({
         data: {
           orderNumber,

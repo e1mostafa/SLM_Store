@@ -79,7 +79,10 @@ export function setupPassport() {
               });
             }
 
-            return done(null, user);
+           return done(null, {
+            ...user,
+            avatar: user.avatar ?? undefined,
+           });
           } catch (error) {
             return done(error, undefined);
           }
