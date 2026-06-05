@@ -11,8 +11,13 @@ import { usersApi } from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
 import toast from 'react-hot-toast';
 import Link from 'next/link';
+import { Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 
-const TABS = [
+function AccountContent() {
+  const searchParams = useSearchParams();
+  const [activeTab, setActiveTab] = useState(searchParams.get('tab') || 'profile');
+  const TABS = [
   { id: 'profile', label: 'Profile', icon: User },
   { id: 'addresses', label: 'Addresses', icon: MapPin },
   { id: 'security', label: 'Security', icon: Lock },
