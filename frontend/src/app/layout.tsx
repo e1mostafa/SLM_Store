@@ -4,13 +4,14 @@ import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { QueryProvider } from '@/components/providers/QueryProvider';
 import { Toaster } from 'react-hot-toast';
 
-// FIX: Google Fonts may be unavailable in restricted/offline environments.
-// Use CSS system font stack via globals.css instead of next/font/google.
-
 export const metadata: Metadata = {
   title: {
     default: 'SLM Store - Shop Everything You Love',
     template: '%s | SLM Store',
+  },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/favicon.ico',
   },
   description: 'Shop millions of products from thousands of sellers. Fast delivery across Egypt.',
   keywords: ['ecommerce', 'shopping', 'egypt', 'online store', 'marketplace'],
