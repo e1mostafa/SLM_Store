@@ -4,20 +4,16 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { motion } from 'framer-motion';
-import { User, MapPin, Lock, Bell, Package, Heart, Store, Plus, Trash2, Edit2, Check, Loader2 } from 'lucide-react';
+import { User, MapPin, Lock, Package, Heart, Store, Plus, Trash2, Check, Loader2 } from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { usersApi } from '@/lib/api';
 import { useAuthStore } from '@/store/authStore';
 import toast from 'react-hot-toast';
 import Link from 'next/link';
-import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-function AccountContent() {
-  const searchParams = useSearchParams();
-  const [activeTab, setActiveTab] = useState(searchParams.get('tab') || 'profile');
-  const TABS = [
+const TABS = [
   { id: 'profile', label: 'Profile', icon: User },
   { id: 'addresses', label: 'Addresses', icon: MapPin },
   { id: 'security', label: 'Security', icon: Lock },
@@ -46,7 +42,6 @@ export default function AccountPage() {
     enabled: isAuthenticated,
   });
 
-  // Profile form
   const [profileForm, setProfileForm] = useState({ name: '', phone: '' });
   useEffect(() => {
     if (profile) setProfileForm({ name: profile.name || '', phone: profile.phone || '' });
@@ -61,7 +56,6 @@ export default function AccountPage() {
     onError: () => toast.error('Failed to update profile'),
   });
 
-  // Password form
   const [pwForm, setPwForm] = useState({ currentPassword: '', newPassword: '', confirmPassword: '' });
   const [pwLoading, setPwLoading] = useState(false);
 
@@ -83,7 +77,6 @@ export default function AccountPage() {
     }
   };
 
-  // Address form
   const [showAddressForm, setShowAddressForm] = useState(false);
   const [addressForm, setAddressForm] = useState({ fullName: '', phone: '', street: '', city: '', state: '', country: 'Egypt', zipCode: '', isDefault: false });
 
@@ -112,7 +105,6 @@ export default function AccountPage() {
       <main className="flex-1 max-w-5xl mx-auto px-4 py-6 w-full">
         <h1 className="text-2xl font-bold text-foreground mb-6">My Account</h1>
 
-        {/* Quick links */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
           {[
             { href: '/orders', icon: Package, label: 'My Orders', count: profile?._count?.orders },
@@ -133,7 +125,6 @@ export default function AccountPage() {
         </div>
 
         <div className="grid md:grid-cols-[220px_1fr] gap-6">
-          {/* Sidebar tabs */}
           <div className="bg-card border border-border rounded-lg p-2 h-fit">
             {TABS.map(({ id, label, icon: Icon }) => (
               <button
@@ -147,9 +138,7 @@ export default function AccountPage() {
             ))}
           </div>
 
-          {/* Tab content */}
           <div className="bg-card border border-border rounded-lg p-6">
-            {/* Profile tab */}
             {activeTab === 'profile' && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                 <h2 className="font-semibold text-foreground mb-5">Personal Information</h2>
@@ -191,7 +180,6 @@ export default function AccountPage() {
               </motion.div>
             )}
 
-            {/* Addresses tab */}
             {activeTab === 'addresses' && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                 <div className="flex items-center justify-between mb-5">
@@ -264,7 +252,6 @@ export default function AccountPage() {
               </motion.div>
             )}
 
-            {/* Security tab */}
             {activeTab === 'security' && (
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                 <h2 className="font-semibold text-foreground mb-5">Change Password</h2>
