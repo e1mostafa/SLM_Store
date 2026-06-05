@@ -21,7 +21,8 @@ const TABS = [
 export default function AccountPage() {
   const router = useRouter();
   const { isAuthenticated, user, setUser } = useAuthStore();
-  const [activeTab, setActiveTab] = useState('profile');
+  const searchParams = useSearchParams();
+  const [activeTab, setActiveTab] = useState(searchParams.get('tab') || 'profile');
   const queryClient = useQueryClient();
 
   useEffect(() => {
