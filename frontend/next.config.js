@@ -2,11 +2,15 @@
 const nextConfig = {
   output: 'standalone',
   images: {
-    domains: [
-      'images.unsplash.com',
-      'res.cloudinary.com',
-      'lh3.googleusercontent.com',
-      'localhost',
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+      {
+        protocol: 'http',
+        hostname: '**',
+      },
     ],
     formats: ['image/avif', 'image/webp'],
   },
@@ -23,5 +27,4 @@ const nextConfig = {
     ];
   },
 };
-
 module.exports = nextConfig;
